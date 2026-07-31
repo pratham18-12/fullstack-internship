@@ -4,22 +4,31 @@ const app = express();
 
 app.use(express.json());
 
+let blogs = [];
+
+// Home
 app.get("/", (req, res) => {
-    res.send("Welcome to My Express Server");
+    res.send("Welcome to Blog API");
 });
 
-app.get("/blog", (req, res) => {
-    res.send("This is the Blog Page");
-});
+// Add Blog
+app.post("/blogs", (req, res) => {
 
-app.post("/contact", (req, res) => {
-    const { name, email } = req.body;
+    const { title, content } = req.body;
+
+    const blog = {
+        id: blogs.length + 1,
+        title,
+        content
+    };
+
+    blogs.push(blog);
 
     res.json({
-        message: "Form Submitted Successfully",
-        name,
-        email
+        message: "Blog Added Successfully",
+        blog
     });
+
 });
 
 app.listen(3000, () => {
