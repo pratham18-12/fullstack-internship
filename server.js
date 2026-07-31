@@ -31,6 +31,19 @@ app.post("/blogs", (req, res) => {
 
 });
 
+// View Blogs
+app.get("/blogs", (req, res) => {
+
+    if (blogs.length === 0) {
+        return res.json({
+            message: "No Blogs Found"
+        });
+    }
+
+    res.json(blogs);
+
+});
+
 app.listen(3000, () => {
     console.log("Server running on port 3000");
 });
