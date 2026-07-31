@@ -1,34 +1,60 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-    <title>Home</title>
-    <link rel="stylesheet" href="style.css">
+
+<title>Blog App</title>
+
+<style>
+
+body{
+font-family:Arial;
+width:600px;
+margin:auto;
+padding-top:30px;
+}
+
+input,textarea{
+width:100%;
+padding:10px;
+margin:10px 0;
+}
+
+button{
+padding:10px 20px;
+background:blue;
+color:white;
+border:none;
+cursor:pointer;
+}
+
+.blog{
+border:1px solid gray;
+padding:10px;
+margin-top:20px;
+}
+
+</style>
+
 </head>
 
 <body>
 
-<nav>
-    <a href="index.html">Home</a> |
-    <a href="blog.html">Blog</a> |
-    <a href="about.html">About</a> |
-    <a href="contact.html">Contact</a>
-</nav>
+<h1>Simple Blog App</h1>
 
-<h1>Welcome to My Blog Website</h1>
+<input type="text" id="title" placeholder="Blog Title">
 
-<button onclick="welcome()">Click Me</button>
+<textarea id="content" placeholder="Blog Content"></textarea>
 
-<p id="demo"></p>
+<button onclick="addBlog()">Add Blog</button>
+
+<hr>
+
+<h2>All Blogs</h2>
+
+<div id="blogs"></div>
 
 <script src="script.js"></script>
-
-<p>This is the Home Page.</p>
-
-<footer>
-
-<p>© 2026 My Blog Website</p>
-
-</footer>
 
 </body>
 

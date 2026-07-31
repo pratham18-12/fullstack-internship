@@ -1,34 +1,60 @@
-const form = document.getElementById("contactForm");
+async function addBlog(){
 
-form.addEventListener("submit", function(event){
+const title=document.getElementById("title").value;
 
-    event.preventDefault();
+const content=document.getElementById("content").value;
 
-    let name = document.getElementById("name").value;
+await fetch("/blogs",{
 
-    let email = document.getElementById("email").value;
+method:"POST",
 
-    let message = document.getElementById("message");
+headers:{
+"Content-Type":"application/json"
+},
 
-    if(name=="" || email==""){
+body:JSON.stringify({
 
-        message.innerHTML="Please fill all fields.";
+title:title,
 
-        message.style.color="red";
+content:content
 
-    }
-
-    else{
-
-        message.innerHTML="Form Submitted Successfully!";
-
-        message.style.color="green";
-
-    }
+})
 
 });
 
-function welcome(){
+document.getElementById("title").value="";
+document.getElementById("content").value="";
 
-    document.getElementById("demo").innerHTML="Welcome to My Website!";
+loadBlogs();
+
 }
+
+async function loadBlogs(){
+
+const response=await fetch("/blogs");
+
+const blogs=await response.json();
+
+let output="";
+
+blogs.forEach(blog=>{
+
+output+=`
+
+<div class="blog">
+
+<h3>${blog.title}</h3>
+
+<p>${blog.content}</p>
+
+</div>
+
+`;
+
+});
+
+document.getElementById("blogs").innerHTML=output;
+
+}
+
+loadBlogs();
