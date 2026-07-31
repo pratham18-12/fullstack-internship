@@ -69,6 +69,27 @@ app.put("/blogs/:id", (req, res) => {
 
 });
 
+// Delete Blog
+app.delete("/blogs/:id", (req, res) => {
+
+    const id = parseInt(req.params.id);
+
+    const index = blogs.findIndex(blog => blog.id === id);
+
+    if (index === -1) {
+        return res.status(404).json({
+            message: "Blog Not Found"
+        });
+    }
+
+    blogs.splice(index, 1);
+
+    res.json({
+        message: "Blog Deleted Successfully"
+    });
+
+});
+
 app.listen(3000, () => {
     console.log("Server running on port 3000");
 });
