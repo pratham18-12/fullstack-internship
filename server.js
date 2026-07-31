@@ -44,6 +44,31 @@ app.get("/blogs", (req, res) => {
 
 });
 
+// Update Blog
+app.put("/blogs/:id", (req, res) => {
+
+    const id = parseInt(req.params.id);
+
+    const { title, content } = req.body;
+
+    const blog = blogs.find(b => b.id === id);
+
+    if (!blog) {
+        return res.status(404).json({
+            message: "Blog Not Found"
+        });
+    }
+
+    blog.title = title;
+    blog.content = content;
+
+    res.json({
+        message: "Blog Updated Successfully",
+        blog
+    });
+
+});
+
 app.listen(3000, () => {
     console.log("Server running on port 3000");
 });
